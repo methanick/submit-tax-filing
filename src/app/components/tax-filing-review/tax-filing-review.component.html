@@ -1,0 +1,48 @@
+<div class="tax-filing-review-section">
+  <div class="mb-4">
+    <span class="title">Tax Filing Detail</span>
+    <hr class="mt-2" />
+    <div class="d-flex">
+      <span class="label">Type of filing</span
+      ><span>{{ tax.filingType | filingType }}</span>
+    </div>
+    <div class="d-flex">
+      <span class="label">VAT Month</span
+      ><span>{{ tax.month | monthName }} {{ tax.year }}</span>
+    </div>
+  </div>
+  <div class="mb-4">
+    <span class="title">Tax Computation</span>
+    <hr class="mt-2" />
+    <div class="d-flex justify-content-between">
+      <span class="label"
+        >Total value of taxable electronic service exclusive of VAT</span
+      >
+
+      <span>{{ tax.saleAmount }}</span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-column">
+        <span class="label mb-1">Total VAT to be remitted</span>
+        <span class="mb-3"
+          >(7% of Total value taxable electronic service exclusive of VAT)</span
+        >
+      </div>
+      <span>{{ tax.taxAmount }}</span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span class="label">Total Amount Payable</span
+      ><span>{{ tax.totalAmount }}</span>
+    </div>
+  </div>
+  <div>
+    <span class="title">Declaration</span>
+    <hr class="mt-2" />
+    <div>
+      <span class="font-weight-bold">
+        I hereby certify that the information above is true and accurate and
+        agree to be bound by such information.
+      </span>
+    </div>
+  </div>
+</div>

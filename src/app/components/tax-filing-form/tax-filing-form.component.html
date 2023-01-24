@@ -1,0 +1,163 @@
+<div class="tax-filing-section">
+  <div [formGroup]="taxFilingForm">
+    <div class="row mb-5">
+      <div class="col-12">
+        <span class="title">1. Tax Filing Detail</span>
+        <hr class="mt-2" />
+      </div>
+      <div class="col-12 mb-4">
+        <label class="required">Type of filing</label>
+        <span *ngIf="isSubmit && !f.filingType.value"
+          >Type of filing is required</span
+        >
+        <div class="d-flex">
+          <div class="mr-3">
+            <input
+              id="ordinary"
+              type="radio"
+              value="0"
+              name="filingType"
+              formControlName="filingType"
+              class="mr-1"
+              (change)="changeFilingType()"
+            />
+            <label for="ordinary">Ordinary Filing</label>
+          </div>
+          <div class="">
+            <input
+              id="additional"
+              type="radio"
+              value="1"
+              name="filingType"
+              class="mr-1"
+              formControlName="filingType"
+              (change)="changeFilingType()"
+            />
+            <label for="additional">Additional Filing</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <label class="required">{{
+          f.filingType.value == 1 ? "Tax Month" : "VAT Month"
+        }}</label>
+        <div>
+          <select class="custom-select" formControlName="month">
+            <option *ngFor="let month of monthList" [value]="month.value">
+              {{ month.label }}
+            </option>
+          </select>
+          <select class="custom-select" formControlName="year">
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-6" *ngIf="f.filingType.value == 1">
+        <label class="required">Type</label>
+        <div>
+          <select class="custom-select" formControlName="month">
+            <option *ngFor="let month of monthList" [value]="month.value">
+              {{ month.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-between">
+          <span class="title">2. Tax Computation</span>
+          <span class="underline">View Exchange Rate</span>
+        </div>
+        <hr class="mt-2" />
+      </div>
+      <div class="col-12">
+        <label class="font-weight-bold"
+          >Provide total value taxable electronic service</label
+        >
+        <div>
+          <div class="form-group row">
+            <label class="col-sm-8 col-form-label"
+              >1. Total value of taxable electronic service exclusive of
+              VAT</label
+            >
+            <div class="col-sm-4">
+              <input
+                type="number"
+                class="form-control text-right"
+                placeholder="THB"
+                formControlName="saleAmount"
+                appTwoDigitDecimal
+                (blur)="enterSaleAmount()"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-8 col-form-label"
+              >2. Total VAT to be remitted (7% of 1.)</label
+            >
+            <div class="col-sm-4">
+              <input
+                type="number"
+                class="form-control text-right"
+                placeholder="THB"
+                formControlName="taxAmount"
+                appTwoDigitDecimal
+              />
+            </div>
+          </div>
+          <ng-container *ngIf="f.filingType.value == 1">
+            <label class="font-weight-bold"
+              >In case of late filing and payment, or additional filing</label
+            >
+            <div class="form-group row">
+              <label class="col-sm-8 col-form-label">3. Surcharge</label>
+              <div class="col-sm-4">
+                <input
+                  readonly
+                  type="number"
+                  class="form-control text-right"
+                  placeholder="THB"
+                  formControlName="surcharge"
+                  appTwoDigitDecimal
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-8 col-form-label">4. Penalty</label>
+              <div class="col-sm-4">
+                <input
+                  readonly
+                  type="number"
+                  class="form-control text-right"
+                  placeholder="THB"
+                  formControlName="penalty"
+                  appTwoDigitDecimal
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-8 col-form-label"
+                >5. Total amout of VAT, surcharge and penalty to be remitted
+                (2+3+4)</label
+              >
+              <div class="col-sm-4">
+                <input
+                  readonly
+                  type="number"
+                  class="form-control text-right"
+                  placeholder="THB"
+                  formControlName="totalAmount"
+                  appTwoDigitDecimal
+                />
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

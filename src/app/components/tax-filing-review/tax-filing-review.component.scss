@@ -1,0 +1,16 @@
+.tax-filing-review-section {
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+
+  .title {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .label {
+    min-width: 120px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+}
